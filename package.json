@@ -1,0 +1,24 @@
+{
+  "name": "ml-derivative-explanation",
+  "version": "1.0.0",
+  "description": "A website, for Calculus AP, that explains the concept of a derivative and its relation to machine learning.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/truered8/ml-derivative-explanation.git"
+  },
+  "keywords": [
+    "calculus",
+    "machine",
+    "learning"
+  ],
+  "author": "Saptarshi Bhattacherya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/truered8/ml-derivative-explanation/issues"
+  },
+  "homepage": "https://github.com/truered8/ml-derivative-explanation#readme"
+}
