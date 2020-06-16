@@ -125,7 +125,7 @@
         less likely to be watched. In particular, a perceptron is a chain of 
         mathematical functions. The first function looks like this:
       </p>
-      $$g(x_0, x_1) = w_0*x_0+w_1*x_1$$
+      $$g(x_0, x_1) = w_0 \cdot x_0 + w_1 \cdot x_1$$
       <p>
         where \(x_0\) is the first input (the length of the video), \(x_1\) is the 
         second input (the number of views the video has), and \(w_0\) and \(w_1\) are 
@@ -190,7 +190,7 @@
           variables, treat the other variables as constant
         </li>
         <li>Derivative of \(e^x\) - \(\frac{d}{dx}e^x=e^x\)</li>
-        <li>Chain Rule - \([f(g(x))]^\prime=f^\prime(g(x))*g^\prime(x)\)</li>
+        <li>Chain Rule - \([f(g(x))]^\prime=f^\prime(g(x)) \cdot g^\prime(x)\)</li>
       </ul>
       <br>
       <p>
@@ -199,7 +199,7 @@
         function in the chain of functions. First, let's use the power rule 
         to calculate \(\frac{dm}{df}(f - a)^2\).
       </p>
-      $$\frac{dm}{df}(f - a)^2=2 * (f - a)$$
+      $$\frac{dm}{df}(f - a)^2=2 \cdot (f - a)$$
       <p>
         Next, we find the derivative of \(f\) with respect to \(g\). Here we 
         use the fact that \(\frac{d}{dx}e^x=e^x\) as well as the power rule 
@@ -222,21 +222,21 @@
         the constant rule and constant multiple rule.
       </p>
       $$\begin{align}
-      \frac{dg}{dw_0} (w_0*x_0+w_1*x_1) &= x_0 + 0 \\
+      \frac{dg}{dw_0} (w_0 \cdot x_0 + w_1 \cdot x_1) &= x_0 + 0 \\
       &= x_0
       \end{align}$$
       <p>
         Now we can combine these using the chain rule:
       </p>
       $$\begin{align}
-      \dfrac{dm}{dw_0}(m(f(g(x_0,x_1)),a)) &= m^\prime(f(g(x_0,x_1))) * f^\prime(g(x_0,x_1)) * g^\prime(x_0,x_1) \\
-      &= 2 * (f(g(x_0,x_1)) - a) * f(g(x_0,x_1)) * (1 - f(g(x_0,x_1))) * x_0
+      \dfrac{dm}{dw_0}(m(f(g(x_0,x_1)),a)) &= m^\prime(f(g(x_0,x_1))) \cdot f^\prime(g(x_0,x_1)) \cdot g^\prime(x_0,x_1) \\
+      &= 2 \cdot (f(g(x_0,x_1)) - a) \cdot f(g(x_0,x_1)) \cdot (1 - f(g(x_0,x_1))) \cdot x_0
       \end{align}$$
       <br>
       <p>
         Similarly, the derivative of \(m\) with respect to \(w_1\) is:
       </p>
-      $$2 * (f(g(x_0,x_1)) - a) * f(g(x_0,x_1)) * (1 - f(g(x_0,x_1))) * x_1$$ 
+      $$2 \cdot (f(g(x_0,x_1)) - a) \cdot f(g(x_0,x_1)) \cdot (1 - f(g(x_0,x_1))) \cdot x_1$$ 
       <p>
         After the derivative of the error with respect to a parameter is 
         calculated, a fraction of the derivative is subtracted from the 
