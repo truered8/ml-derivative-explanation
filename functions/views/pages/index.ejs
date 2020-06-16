@@ -10,9 +10,44 @@
     <main>
       <h3>What is Machine Learning?</h3>
       <p>
-        Machine learning is a study of special algorithms that improve
-        automatically over time.
+        Machine learning is the study of special computer algorithms that 
+        improve automatically over time. Whereas in normal programming, a 
+        computer is explicitly told what to do, machine learning uses certain 
+        mathematical methods to allow computers to "learn" by themselves. A 
+        few of the applications of machine learning are:
+        <ul>
+          <li>Recommended content in various social media platforms</li>
+          <li>The diagnosis of different diseases</li>
+          <li>The increased capabilities of robots to complete precise tasks 
+            such as surgery</li>
+        </ul>
       </p>
+      <br>
+      <h3>How does Machine Learning Work?</h3>
+      <p>
+        While the above examples may seem unrelated, they all involve one 
+        thing: data. The goal of machine learning is to use computer-based
+        methods to find helpful insights from data.
+      </p>
+      <br>
+      <p>
+        Consider an example of the first application mentioned: YouTube has to
+        decide what videos to recommend to an individual that will maximize 
+        the amount of time the individual spends watching videos on YouTube. 
+        In order to accomplish this task, the website analyzes a vast array of 
+        data that they have collected on the individual in the past to predict which types of 
+        videos they can recomend that will maximize the future watch time. 
+        This data relates a video's characteristics to whether or not the 
+        video has been watched by the individual. In reality, the data 
+        involves many different variables; however, for the sake of 
+        simplicity, let's assume that the independent variables in this 
+        scenario are the length of the video and the number of views the video 
+        has, and the dependent variable is whether or not the individual 
+        watched the video. A possible subset of the data is shown in the table 
+        below:
+      </p>
+      <br>
+      <%- include ("../partials/table") %>
     </main>
     <footer>
       <%- include ("../partials/footer") %>
