@@ -10,7 +10,7 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     ></script>
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
   </head>
   <body>
     <header>
@@ -113,7 +113,9 @@
         way, we can create a system that will only recommend videos that the 
         individual is likely to watch (according to our model).
       </p>
-      <img src="perceptron.png" alt="perceptron">
+      <br>
+      <img src="assets/perceptron.png" alt="perceptron">
+      <br>
       <p>
         One type of machine learning model we can use is a 
         <strong>perceptron</strong> (pictured above). A perceptron is a machine learning model 
@@ -123,10 +125,10 @@
         less likely to be watched. In particular, a perceptron is a chain of 
         mathematical functions. The first function looks like this:
       </p>
-      $$g(x0, x1) = w0*x0+w1*x1$$
+      $$g(x_0, x_1) = w_0*x_0+w_1*x_1$$
       <p>
-        where \(x0\) is the first input (the length of the video), \(x1\) is the 
-        second input (the number of views the video has), and \(w0\) and \(w1\) are 
+        where \(x_0\) is the first input (the length of the video), \(x_1\) is the 
+        second input (the number of views the video has), and \(w_0\) and \(w_1\) are 
         parameters of the function that determine how significant each of the 
         inputs are (a higher weight means the corresponding input has a 
         higher significance to the output). 
@@ -140,28 +142,131 @@
         This takes the output of the first function and "squishes" it between 
         0 and 1. For very large negative inputs this outputs numbers very 
         close to 0 and for very large positive inputs this outputs numbers 
-        very close to 1. 
+        very close to 1. The number \(e\) is used for its convenience when 
+        calculating the derivative of the function.
       </p>
       <br>
+      <h3>Training</h3>
       <p>
-        The perceptron can be thought of as \(f(g(x0,x1))\); it takes as input 
-        the length and views of a video and outputs a number close to 0 is the 
+        The perceptron can be thought of as \(f(g(x_0,x_1))\); it takes as input 
+        the length and views of a video and outputs a number close to 0 if the 
         video is not likely to be watched and close to 1 if it is. Now, we 
-        just need to know how the parameters \(w0\) and \(w1\) are chosen. 
+        just need to know how the parameters \(w_0\) and \(w_1\) are chosen. 
         These parameters are at first randomized, then optimized during a 
         process known as <strong>training</strong>. During training, the model 
         essentially loops through each previous data point available, 
         predicting what the output of each input should be according to the 
         current state of the model. It then calculates its own error by 
         comparing its predicted output to the actual output. One common metric 
-        to calculate the error is known as <strong>mean squared error (MSE) 
-        </strong>:
+        to calculate the error is the squared error:
       </p>
-      $$m(p,a) = \frac{1}{n}\sum_{i=1}^{n}{\Big(p_i-a_i)^2}$$
+      $$m(p,a) = (p-a)^2$$
       <p>
-        where \(p\) is the set of predicted values and \(a\) is the set of 
-        actual values.
+        where \(p\) is the predicted value and \(a\) is the actual value. 
       </p>
+      <br>
+      <p>
+        During the training process, the model continually updates its own 
+        parameters based on what updates will minimize the error. One strategy
+        used for this is known as <strong>gradient descent</strong>. 
+      </p>
+      <br>
+      <h3>How are Derivatives Involved?</h3>
+      <p>
+        During gradient descent, the derivative of the error with respect to 
+        each parameter is calculated. This calculation is simple, as the error 
+        is just the chain of functions \(m(f(g(x_0,x_1)),a)\), where \(f(g(x_0,x_1))\) 
+        is the output of the perceptron and \(a\) is the actual value. Some 
+        methods more advanced than we have seen in class are used to calculate 
+        the derivatives (these are explained below); however, the 
+        concept remains the same: finding the rate at which the error changes 
+        with respect to each parameter. The following extra knowledge is 
+        needed:
+      </p>
+      <ul>
+        <li>
+          Partial Derivatives - To calculate the derivative of a 
+          multi-variable function with respect to one of its 
+          variables, treat the other variables as constant
+        </li>
+        <li>Derivative of \(e^x\) - \(\frac{d}{dx}e^x=e^x\)</li>
+        <li>Chain Rule - \([f(g(x))]^\prime=f^\prime(g(x))*g^\prime(x)\)</li>
+      </ul>
+      <br>
+      <p>
+        In order to calculate the derivative of the error function with 
+        respect to \(w_0\), we need to calculate the derivative of each 
+        function in the chain of functions. First, let's use the power rule 
+        to calculate \(\frac{dm}{df}(f - a)^2\).
+      </p>
+      $$\frac{dm}{df}(f - a)^2=2 * (f - a)$$
+      <p>
+        Next, we find the derivative of \(f\) with respect to \(g\). Here we 
+        use the fact that \(\frac{d}{dx}e^x=e^x\) as well as the power rule 
+        and some algebra.
+      </p>
+      $$\begin{align}
+      \dfrac{df}{dg} \left[ \dfrac{1}{1 + e^{-x}} \right] &= \dfrac{d}{dx} \left( 1 + \mathrm{e}^{-x} \right)^{-1} \\
+      &= -(1 + e^{-x})^{-2}(-e^{-x}) \\
+      &= \dfrac{e^{-x}}{\left(1 + e^{-x}\right)^2} \\
+      &= \dfrac{1}{1 + e^{-x}\ } \cdot \dfrac{e^{-x}}{1 + e^{-x}}  \\
+      &= \dfrac{1}{1 + e^{-x}\ } \cdot \dfrac{(1 + e^{-x}) - 1}{1 + e^{-x}}  \\
+      &= \dfrac{1}{1 + e^{-x}\ } \cdot \left( \dfrac{1 + e^{-x}}{1 + e^{-x}} - \dfrac{1}{1 + e^{-x}} \right) \\
+      &= \dfrac{1}{1 + e^{-x}\ } \cdot \left( 1 - \dfrac{1}{1 + e^{-x}} \right) \\
+      &= f \cdot (1 - f)
+      \end{align}$$
+      <p>
+        Finally, we find the derivative of \(g\) with respect to \(w_0\). Note 
+        that we treat \(w_1\) as a constant here as we are only finding how 
+        the function changes with respect to \(w_0\). We calculate this using 
+        the constant rule and constant multiple rule.
+      </p>
+      $$\begin{align}
+      \frac{dg}{dw_0} (w_0*x_0+w_1*x_1) &= x_0 + 0 \\
+      &= x_0
+      \end{align}$$
+      <p>
+        Now we can combine these using the chain rule:
+      </p>
+      $$\dfrac{dm}{dw_0}(m(f(g(x_0,x_1)),a)) = 2 * (f(g(x_0,x_1)) - a) * f(g(x_0,x_1)) * (1 - f(g(x_0,x_1))) * x_0$$ 
+      <br>
+      <p>
+        Similarly, the derivative of \(m\) with respect to \(w_1\) is:
+      </p>
+      $$2 * (f(g(x_0,x_1)) - a) * f(g(x_0,x_1)) * (1 - f(g(x_0,x_1))) * x_1$$ 
+      <p>
+        After the derivative of the error with respect to a parameter is 
+        calculated, a fraction of the derivative is subtracted from the 
+        current value of the parameter. This way, the error is now smaller 
+        than it was before this adjustment. As the training process continues, 
+        the error gets closer to the minimum, causing the derivative to get 
+        smaller, causing each incremental change to get smaller as well. This 
+        process is illustrated below:
+      </p>
+      <br>
+      <img style="width: 50%;" src="assets/gradient_descent.png" alt="gradient descent">
+      <br>
+      <p>
+        After the parameters are close enough to their optimal value and the 
+        error is small enough, the training process is stopped. This means the 
+        perceptron was able to model the data accurately enough. In our case, 
+        we would now be able to use the model to make predictions on which 
+        videos the individual would be likely to watch.
+      </p>
+      <br>
+      <h3>Summary</h3>
+      <ul>
+        <li>Machine learning is a field of computer science involving calculus</li>
+        <li>An example of a machine learning model is a perceptron</li>
+        <li>A perceptron can use gradient descent to optimize itself</li>
+        <li>
+          This technique involves subtracting a fraction of the derivative
+          of the error from each parameter in order to incrementally reduce
+          the error of the model
+        </li>
+      </ul>
+      <br>
+      <p>Thanks for reading!</p>
     </main>
     <footer>
       <p>
@@ -174,7 +279,6 @@
           >https://github.com/truered8/ml-derivative-explanation</a
         >
       </p>
-      
     </footer>
   </body>
 </html>
