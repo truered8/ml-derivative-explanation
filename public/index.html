@@ -1,65 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.15.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.15.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.15.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.15.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.15.1/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <title>Derivatives and Machine Learning</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+    <header>
+      <h1>Derivatives and Machine Learning</h1>
+    </header>
+    <main>
+      <h3>What is Machine Learning?</h3>
+      <p>
+        Machine learning is the study of special computer algorithms that 
+        improve automatically over time. Whereas in normal programming, a 
+        computer is explicitly told what to do, machine learning uses certain 
+        mathematical methods to allow computers to "learn" by themselves. A 
+        few of the applications of machine learning are:
+        <ul>
+          <li>Recommended content in various social media platforms</li>
+          <li>The diagnosis of different diseases</li>
+          <li>The increased capabilities of robots to complete precise tasks 
+            such as surgery</li>
+        </ul>
+      </p>
+      <br>
+      <h3>How does Machine Learning Work?</h3>
+      <p>
+        While the above examples may seem unrelated, they all involve one 
+        thing: data. The goal of machine learning is to use computer-based
+        methods to find helpful insights from data.
+      </p>
+      <br>
+      <p>
+        Consider an example of the first application mentioned: YouTube has to
+        decide what videos to recommend to an individual that will maximize 
+        the amount of time the individual spends watching videos on YouTube. 
+        In order to accomplish this task, the website analyzes a vast array of 
+        data that they have collected on the individual in the past to predict 
+        which types of videos they can recomend that will maximize the future 
+        watch time. This data relates a video's characteristics to whether or 
+        not the video has been watched by the individual. In reality, the data 
+        involves many different variables; however, for the sake of 
+        simplicity, let's assume that the independent variables in this 
+        scenario are the length of the video and the number of views the video 
+        has, and the dependent variable is whether or not the individual 
+        watched the video. A possible subset of the data is shown in the table 
+        below:
+      </p>
+      <br>
+        <table>
+          <tr>
+            <th>Video Length (min)</th>
+            <th>Number of Views</th>
+            <th>Watched?</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>500,000</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>200</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>3,650,000</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>900,000</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>0.5</td>
+            <td>48</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>12,000,000</td>
+            <td>Yes</td>
+          </tr>
+        </table>
+      <br>
+      <p>
+        Now let's say we have a few options of different videos to recommend,
+        and we need to recommend one of them based on this data. In this case,
+        since there are not many variables or data points we can probably 
+        find patterns ourselves that will tell us what videos are more likely
+        to be watched; in reality, however, there can be petabytes of complex 
+        data that would be impossible to analyze by hand.
+      </p>
+      <br>
+      <p>
+        Instead, we can use a <strong>machine learning model</strong> to 
+        automate this process. A machine learning model is like a mathematical 
+        function; it takes in an input and produces an output. In our case, we 
+        need a machine learning model that will take the length of a video and 
+        the number of views it has as input and output either "yes" or "no", 
+        depending on whether or not the individual will watch the video. This 
+        way, we can create a system that will only recommend videos that the 
+        individual is likely to watch (according to our model).
+      </p>
+      <img src="perceptron.png" alt="perceptron">
+      <p>
+        One type of machine learning model we can use is a 
+        <strong>perceptron</strong> (pictured above). A perceptron is a machine learning model 
+        that takes multiple numbers as input and outputs a number between 0 
+        and 1. In our case, an output closer to 1 would mean the video is more 
+        likely to be watched and an output closer to 0 would mean the video is 
+        less likely to be watched. In particular, a perceptron is a chain of 
+        mathematical functions. The first function looks like this:
+      </p>
+      $$g(x0, x1) = w0*x0+w1*x1$$
+      <p>
+        where \(x0\) is the first input (the length of the video), \(x1\) is the 
+        second input (the number of views the video has), and \(w0\) and \(w1\) are 
+        parameters of the function that determine how significant each of the 
+        inputs are (a higher weight means the corresponding input has a 
+        higher significance to the output). 
+      </p>
+      <br>
+      <p>
+        The second function looks like this:
+      </p>
+      $$f(x) = \frac{1}{1+e^{-x}}$$
+      <p>
+        This takes the output of the first function and "squishes" it between 
+        0 and 1. For very large negative inputs this outputs numbers very 
+        close to 0 and for very large positive inputs this outputs numbers 
+        very close to 1. 
+      </p>
+      <br>
+      <p>
+        The perceptron can be thought of as \(f(g(x0,x1))\); it takes as input 
+        the length and views of a video and outputs a number close to 0 is the 
+        video is not likely to be watched and close to 1 if it is. Now, we 
+        just need to know how the parameters \(w0\) and \(w1\) are chosen. 
+        These parameters are at first randomized, then optimized during a 
+        process known as <strong>training</strong>. During training, the model 
+        essentially loops through each previous data point available, 
+        predicting what the output of each input should be according to the 
+        current state of the model. It then calculates its own error by 
+        comparing its predicted output to the actual output. One common metric 
+        to calculate the error is known as <strong>mean squared error (MSE) 
+        </strong>:
+      </p>
+      $$m(p,a) = \frac{1}{n}\sum_{i=1}^{n}{\Big(p_i-a_i)^2}$$
+      <p>
+        where \(p\) is the set of predicted values and \(a\) is the set of 
+        actual values.
+      </p>
+    </main>
+    <footer>
+      <p>
+        Created by Saptarshi Bhattacherya in 2020.
+        <br />
+        GitHub:
+        <a
+          target="_blank"
+          href="https://github.com/truered8/ml-derivative-explanation"
+          >https://github.com/truered8/ml-derivative-explanation</a
+        >
+      </p>
+      
+    </footer>
   </body>
 </html>
