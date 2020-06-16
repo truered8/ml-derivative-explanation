@@ -228,7 +228,10 @@
       <p>
         Now we can combine these using the chain rule:
       </p>
-      $$\dfrac{dm}{dw_0}(m(f(g(x_0,x_1)),a)) = 2 * (f(g(x_0,x_1)) - a) * f(g(x_0,x_1)) * (1 - f(g(x_0,x_1))) * x_0$$ 
+      $$\begin{align}
+      \dfrac{dm}{dw_0}(m(f(g(x_0,x_1)),a)) &= m^\prime(f(g(x_0,x_1))) * f^\prime(g(x_0,x_1)) * g^\prime(x_0,x_1) \\
+      &= 2 * (f(g(x_0,x_1)) - a) * f(g(x_0,x_1)) * (1 - f(g(x_0,x_1))) * x_0
+      \end{align}$$
       <br>
       <p>
         Similarly, the derivative of \(m\) with respect to \(w_1\) is:
