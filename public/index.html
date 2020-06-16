@@ -187,9 +187,10 @@
         <li>
           Partial Derivatives - To calculate the derivative of a 
           multi-variable function with respect to one of its 
-          variables, treat the other variables as constant
+          variables, treat the other variables as constant and use \(\partial\)
+          instead of \(d\)
         </li>
-        <li>Derivative of \(e^x\) - \(\frac{d}{dx}e^x=e^x\)</li>
+        <li>Derivative of \(e^x\) - \(\dfrac{d}{dx}e^x=e^x\)</li>
         <li>Chain Rule - \([f(g(x))]^\prime=f^\prime(g(x)) \cdot g^\prime(x)\)</li>
       </ul>
       <br>
@@ -197,39 +198,43 @@
         In order to calculate the derivative of the error function with 
         respect to \(w_0\), we need to calculate the derivative of each 
         function in the chain of functions. First, let's use the power rule 
-        to calculate \(\frac{dm}{df}(f - a)^2\).
+        to calculate \(\frac{\partial m}{\partial f}(f - a)^2\).
       </p>
-      $$\frac{dm}{df}(f - a)^2=2 \cdot (f - a)$$
+      $$\dfrac{\partial m}{\partial f}(f - a)^2=2 \cdot (f - a)$$
       <p>
         Next, we find the derivative of \(f\) with respect to \(g\). Here we 
-        use the fact that \(\frac{d}{dx}e^x=e^x\) as well as the power rule 
-        and some algebra.
+        use the fact that \(\frac{d}{dx}e^x=e^x\) as well as the power rule,
+        chain rule, constant rule, sum rule, and some algebra.
       </p>
       $$\begin{align}
-      \dfrac{df}{dg} \left[ \dfrac{1}{1 + e^{-x}} \right] &= \dfrac{d}{dx} \left( 1 + \mathrm{e}^{-x} \right)^{-1} \\
-      &= -(1 + e^{-x})^{-2}(-e^{-x}) \\
-      &= \dfrac{e^{-x}}{\left(1 + e^{-x}\right)^2} \\
-      &= \dfrac{1}{1 + e^{-x}\ } \cdot \dfrac{e^{-x}}{1 + e^{-x}}  \\
-      &= \dfrac{1}{1 + e^{-x}\ } \cdot \dfrac{(1 + e^{-x}) - 1}{1 + e^{-x}}  \\
-      &= \dfrac{1}{1 + e^{-x}\ } \cdot \left( \dfrac{1 + e^{-x}}{1 + e^{-x}} - \dfrac{1}{1 + e^{-x}} \right) \\
-      &= \dfrac{1}{1 + e^{-x}\ } \cdot \left( 1 - \dfrac{1}{1 + e^{-x}} \right) \\
+      \dfrac{\partial f}{\partial g} \left[ \dfrac{1}{1 + e^{-g}} \right] &= \dfrac{\partial f}{\partial g} \left( 1 + \mathrm{e}^{-g} \right)^{-1} \\
+      &= -(1 + e^{-g})^{-2} \cdot \dfrac{\partial}{\partial g}(1 + e^{-g}) \\
+      &= -(1 + e^{-g})^{-2} \cdot (0 + \dfrac{\partial}{\partial g}e^{-g}) \\
+      &= -(1 + e^{-g})^{-2} \cdot (0 + e^{-g} \cdot \dfrac{\partial}{\partial g}(-g)) \\
+      &= -(1 + e^{-g})^{-2} \cdot (0 + e^{-g} \cdot -1) \\
+      &= -(1 + e^{-g})^{-2} \cdot -e^{-g} \\
+      &= \dfrac{e^{-g}}{\left(1 + e^{-g}\right)^2} \\
+      &= \dfrac{1}{1 + e^{-g}\ } \cdot \dfrac{e^{-g}}{1 + e^{-g}}  \\
+      &= \dfrac{1}{1 + e^{-g}\ } \cdot \dfrac{(1 + e^{-g}) - 1}{1 + e^{-g}}  \\
+      &= \dfrac{1}{1 + e^{-g}\ } \cdot \left( \dfrac{1 + e^{-g}}{1 + e^{-g}} - \dfrac{1}{1 + e^{-g}} \right) \\
+      &= \dfrac{1}{1 + e^{-g}\ } \cdot \left( 1 - \dfrac{1}{1 + e^{-g}} \right) \\
       &= f \cdot (1 - f)
       \end{align}$$
       <p>
         Finally, we find the derivative of \(g\) with respect to \(w_0\). Note 
         that we treat \(w_1\) as a constant here as we are only finding how 
         the function changes with respect to \(w_0\). We calculate this using 
-        the constant rule and constant multiple rule.
+        the constant rule, constant multiple rule, and sum rule.
       </p>
       $$\begin{align}
-      \frac{dg}{dw_0} (w_0 \cdot x_0 + w_1 \cdot x_1) &= x_0 + 0 \\
+      \frac{\partial g}{\partial w_0} (w_0 \cdot x_0 + w_1 \cdot x_1) &= x_0 + 0 \\
       &= x_0
       \end{align}$$
       <p>
         Now we can combine these using the chain rule:
       </p>
       $$\begin{align}
-      \dfrac{dm}{dw_0}(m(f(g(x_0,x_1)),a)) &= m^\prime(f(g(x_0,x_1))) \cdot f^\prime(g(x_0,x_1)) \cdot g^\prime(x_0,x_1) \\
+      \dfrac{\partial m}{\partial w_0}(m(f(g(x_0,x_1)),a)) &= m^\prime(f(g(x_0,x_1))) \cdot f^\prime(g(x_0,x_1)) \cdot g^\prime(x_0,x_1) \\
       &= 2 \cdot (f(g(x_0,x_1)) - a) \cdot f(g(x_0,x_1)) \cdot (1 - f(g(x_0,x_1))) \cdot x_0
       \end{align}$$
       <br>
@@ -247,7 +252,7 @@
         process is illustrated below:
       </p>
       <br>
-      <img style="width: 50%;" src="assets/gradient_descent.png" alt="gradient descent">
+      <img style="width: 75%;" src="assets/gradient_descent.png" alt="gradient descent">
       <br>
       <p>
         After the parameters are close enough to their optimal value and the 
